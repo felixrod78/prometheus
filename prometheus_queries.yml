@@ -1,0 +1,37 @@
+
+Access the Prometheus expression browser in a web browser (replacing <PROMETHEUS_SERVER_PUBLIC_IP> with the public IP address of the Prometheus server):
+
+http://<PROMETHEUS_SERVER_PUBLIC_IP>:9090
+http://3.237.241.168:9090/graph
+
+Run a query to obtain the available memory amount. Supply a label to search specifically for metrics for the limedrop-auth:4455 instance.
+
+mem_available_total{instance="limedrop-auth:4455"}
+Log in to the Prometheus server and open the output file:
+
+vi /home/cloud_user/auth_service_data.md
+Enter the current available memory on the mem_available_total line.
+
+
+Run a query in the expression browser to obtain the data:
+
+mem_available_total{instance="limedrop-auth:4455"}[5m] offset 3m
+Copy the output, including the timestamps.
+
+On the Prometheus server, open the output file:
+
+vi /home/cloud_user/auth_service_data.md
+Paste in the data at the end of the file.
+
+# LimeDrop Auth Service Metrics
+  
+## Current available memory
+mem_available_total:5575
+
+## Available memory 5-minute range 3 minutes ago
+5793 @1642406098.725
+5802 @1642406128.729
+5802 @1642406158.73
+5898 @1642406188.726
+5898 @1642406218.726
+4233 @1642406248.727

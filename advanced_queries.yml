@@ -1,0 +1,31 @@
+
+Write a Query to Determine Which Instances Have High CPU Utilization
+Access the Prometheus expression browser in your web browser:
+
+http://<PROMETHEUS_SERVER_PUBLIC_IP>:9090
+Run a query to add the CPU usage in the system and user modes for each instance. Then, filter the results to only instances where the combined number of CPU seconds is more than 10000:
+
+(node_cpu_seconds_total{mode="system"} + ignoring(mode) node_cpu_seconds_total{mode="user"}) > 10000
+Log in to the Prometheus server and open the output file:
+
+vi /home/cloud_user/report.md
+
+{cpu="0",instance="limedrop-web:4455",job="limedrop_web"}	38131.66
+{cpu="0",instance="limedrop-auth:4455",job="limedrop_auth"}	38131.66
+
+
+
+Get the Per-Second Rate of Increase in HTTP Request Duration for All Instances
+Run a query from the Prometheus expression browser:
+
+rate(http_request_duration_seconds_sum[5m])
+Copy the output, including the element data and values.
+{instance="limedrop-web:4455",job="limedrop_web"}	0.028511925925925923
+{instance="limedrop-auth:4455",job="limedrop_auth"}	0.031154449425905166
+
+
+On the Prometheus server, open the output file in a terminal:
+
+vi /home/cloud_user/report.md
+Paste in the data obtained using the query at the end of the file.
+
