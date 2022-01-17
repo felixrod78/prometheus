@@ -1,0 +1,25 @@
+Get the Current Temperature of the Data Center
+In a browser, access the Prometheus expression browser:
+
+http://<PROMETHEUS_SERVER_PUBLIC_IP>:9090
+Run a query to obtain the current datacenter_temp:
+
+datacenter_temp
+Copy the current temperature value.
+
+Log in to the Prometheus server and open the file that will contain the temperature data:
+
+vi /home/cloud_user/current_temp.txt
+Enter or paste in the current temperature value obtained from the Prometheus expression browser, and then save the file.
+
+
+Get All Time-Series Entries for the Data Center Temperature Over the Last Five Minutes
+In the Prometheus expression browser, run a query to obtain the data:
+
+datacenter_temp[5m]
+Copy all the values (including the timestamps).
+
+Return to the Prometheus server terminal and open the file that will contain the data:
+
+vi /home/cloud_user/5_minute_temp.txt
+Paste in the time-series data obtained from the Prometheus expression browser, and save the file.
