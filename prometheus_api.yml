@@ -1,0 +1,24 @@
+Get the Current Number of Threads
+Log in to the Prometheus server.
+
+Make an HTTP request to the Prometheus server to retrieve the data and save it to a file:
+
+curl localhost:9090/api/v1/query?query=num_threads > /home/cloud_user/num_threads.txt
+If you want, you can view the file to verify the output is there:
+
+cat /home/cloud_user/num_threads.txtc
+
+curl 'http://54.236.55.106:9090/api/v1/query?query=num_threads
+
+
+Get the `num_threads` Data Over the Last Five Minutes
+Make an HTTP request to retrieve the data and save it to a file:
+
+start=$(date --date '-5 min' +'%Y-%m-%dT%H:%M:%SZ')
+end=$(date +'%Y-%m-%dT%H:%M:%SZ')
+curl "localhost:9090/api/v1/query_range?query=num_threads&start=$start&end=$end&step=15s" > /home/cloud_user/num_threads_5_minutes.txt
+View the file to verify the output is there.
+
+cat /home/cloud_user/num_threads_5_minutes.txt
+
+curl http://54.236.55.106:9090/api/v1/query?query=num_threads[5m] | jq  '.' > /home/cloud_user/num_threads_5_minutes.txt
